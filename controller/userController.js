@@ -1,5 +1,4 @@
 const User = require("../models/user");
-
 async function add(req, res) {
   try {
     const user = new User(req.body);
@@ -61,6 +60,16 @@ async function updateuser(req, res) {
     res.send(err);
   }
 }
+async function updateuserPassword(req, res) {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, {password:req.body.password}, {
+      new: true,
+    });
+    res.json(user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
 module.exports = {
   add,
   showuser,
@@ -68,4 +77,5 @@ module.exports = {
   showuserbyid,
   deleteuser,
   updateuser,
+  updateuserPassword
 };

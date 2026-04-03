@@ -29,6 +29,10 @@ router.get("/showuserbyid/:id", userController.showuserbyid);
 router.delete("/deleteuser/:id", userController.deleteuser);
 
 router.put("/updateuser/:id", userController.updateuser);
+router.put("/updateuserpassword/:id",validate.validatePassword, userController.updateuserPassword);
+
+
+//socket test 
 router.get("/showtwig",(req ,res)=>{
   res.render('user')
 })
